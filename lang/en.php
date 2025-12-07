@@ -16,6 +16,7 @@ return [
     'nav.destinations' => 'Destinations',
     'nav.activities' => 'Activities',
     'nav.gallery' => 'Gallery',
+    'nav.reviews' => 'Reviews',
     'nav.contact' => 'Contact',
     'nav.language' => 'Language',
     
@@ -167,6 +168,23 @@ return [
     'gallery.local_market' => 'Local Market',
     'gallery.mountain_landscape' => 'Mountain Landscape',
     'gallery.traditional_dance' => 'Traditional Dance',
+    
+    // Reviews
+    'reviews.title' => 'What Our Travelers Say',
+    'reviews.subtitle' => 'Real experiences from our guests',
+    'reviews.card1.title' => 'Amazing Namibia 4x4 Adventure',
+    'reviews.card1.excerpt' => 'An incredible journey through Namibia\'s stunning landscapes with excellent guides and perfectly planned routes.',
+    'reviews.card1.author' => 'Travel Blogger Review',
+    'reviews.card1.rating' => '5/5 Stars',
+    'reviews.card2.title' => 'Unforgettable Angola Experience',
+    'reviews.card2.excerpt' => 'From Luanda\'s vibrant culture to the breathtaking Kalandula Falls, every moment was perfectly curated.',
+    'reviews.card2.author' => 'Sarah & Mike Johnson',
+    'reviews.card2.rating' => '5/5 Stars',
+    'reviews.card3.title' => 'Professional Safari Experience',
+    'reviews.card3.excerpt' => 'Wildlife viewing in Kissama National Park exceeded expectations. Professional guides made it educational and exciting.',
+    'reviews.card3.author' => 'Wildlife Photography Group',
+    'reviews.card3.rating' => '5/5 Stars',
+    'reviews.read_full' => 'Read Full Review',
     
     // Contact
     'contact.title' => 'Get In Touch',

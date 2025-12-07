@@ -30,6 +30,7 @@ require_once 'includes/language-config.php';
                 <li><a href="#destinations"><?= __('nav.destinations') ?></a></li>
                 <li><a href="#activities"><?= __('nav.activities') ?></a></li>
                 <li><a href="gallery.php"><?= __('nav.gallery') ?></a></li>
+                <li><a href="#reviews"><?= __('nav.reviews') ?></a></li>
                 <li><a href="#contact"><?= __('nav.contact') ?></a></li>
             </ul>
         </nav>
@@ -395,6 +396,71 @@ require_once 'includes/language-config.php';
                         <?= t('gallery.view_full') ?> →
                     </a>
                 </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section id="reviews" class="reviews">
+            <div class="container">
+                <h2><?= t('reviews.title') ?></h2>
+                <p class="section-subtitle"><?= t('reviews.subtitle') ?></p>
+                
+                <div class="reviews-grid">
+                    <!-- Review Card 1 -->
+                    <div class="review-card">
+                        <div class="review-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-text"><?= t('reviews.card1.rating') ?></span>
+                        </div>
+                        <h3><?= t('reviews.card1.title') ?></h3>
+                        <p class="review-excerpt"><?= t('reviews.card1.excerpt') ?></p>
+                        <div class="review-author">
+                            <strong><?= t('reviews.card1.author') ?></strong>
+                        </div>
+                        <a href="https://sheroamstheglobe.com/travel-namibia-4x4-review/" 
+                           class="review-link" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <?= t('reviews.read_full') ?> →
+                        </a>
+                    </div>
+
+                    <!-- Review Card 2 -->
+                    <div class="review-card">
+                        <div class="review-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-text"><?= t('reviews.card2.rating') ?></span>
+                        </div>
+                        <h3><?= t('reviews.card2.title') ?></h3>
+                        <p class="review-excerpt"><?= t('reviews.card2.excerpt') ?></p>
+                        <div class="review-author">
+                            <strong><?= t('reviews.card2.author') ?></strong>
+                        </div>
+                        <a href="#" 
+                           class="review-link" 
+                           onclick="alert('<?= getCurrentLanguage() === 'pt' ? 'Mais detalhes em breve!' : (getCurrentLanguage() === 'fr' ? 'Plus de détails bientôt!' : (getCurrentLanguage() === 'es' ? '¡Más detalles pronto!' : 'More details coming soon!')) ?>')">
+                            <?= t('reviews.read_full') ?> →
+                        </a>
+                    </div>
+
+                    <!-- Review Card 3 -->
+                    <div class="review-card">
+                        <div class="review-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-text"><?= t('reviews.card3.rating') ?></span>
+                        </div>
+                        <h3><?= t('reviews.card3.title') ?></h3>
+                        <p class="review-excerpt"><?= t('reviews.card3.excerpt') ?></p>
+                        <div class="review-author">
+                            <strong><?= t('reviews.card3.author') ?></strong>
+                        </div>
+                        <a href="#" 
+                           class="review-link" 
+                           onclick="alert('<?= getCurrentLanguage() === 'pt' ? 'Mais detalhes em breve!' : (getCurrentLanguage() === 'fr' ? 'Plus de détails bientôt!' : (getCurrentLanguage() === 'es' ? '¡Más detalles pronto!' : 'More details coming soon!')) ?>')">
+                            <?= t('reviews.read_full') ?> →
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>

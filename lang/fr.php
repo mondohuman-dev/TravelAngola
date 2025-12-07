@@ -16,6 +16,7 @@ return [
     'nav.destinations' => 'Destinations',
     'nav.activities' => 'Activités',
     'nav.gallery' => 'Galerie',
+    'nav.reviews' => 'Avis',
     'nav.contact' => 'Contact',
     'nav.language' => 'Langue',
     
@@ -167,6 +168,23 @@ return [
     'gallery.local_market' => 'Marché Local',
     'gallery.mountain_landscape' => 'Paysage Montagneux',
     'gallery.traditional_dance' => 'Danse Traditionnelle',
+    
+    // Reviews
+    'reviews.title' => 'Ce Que Disent Nos Voyageurs',
+    'reviews.subtitle' => 'Expériences réelles de nos invités',
+    'reviews.card1.title' => 'Aventure 4x4 Namibie Incroyable',
+    'reviews.card1.excerpt' => 'Un voyage incroyable à travers les paysages époustouflants de la Namibie avec d\'excellents guides et des itinéraires parfaitement planifiés.',
+    'reviews.card1.author' => 'Critique de Blogueur Voyage',
+    'reviews.card1.rating' => '5/5 Étoiles',
+    'reviews.card2.title' => 'Expérience Angola Inoubliable',
+    'reviews.card2.excerpt' => 'De la culture vibrante de Luanda aux chutes de Kalandula à couper le souffle, chaque moment a été parfaitement orchestré.',
+    'reviews.card2.author' => 'Sarah & Mike Johnson',
+    'reviews.card2.rating' => '5/5 Étoiles',
+    'reviews.card3.title' => 'Expérience Safari Professionnelle',
+    'reviews.card3.excerpt' => 'L\'observation de la faune au Parc National de Kissama a dépassé les attentes. Des guides professionnels ont rendu cela éducatif et passionnant.',
+    'reviews.card3.author' => 'Groupe Photographie Faune',
+    'reviews.card3.rating' => '5/5 Étoiles',
+    'reviews.read_full' => 'Lire la Critique Complète',
     
     // Contact
     'contact.title' => 'Contactez-Nous',
