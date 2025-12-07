@@ -145,6 +145,10 @@ return [
     'activities.photo.desc' => 'Capture the beauty of Angola\'s diverse landscapes and cultures',
     'activities.photo.duration' => 'Customizable',
     
+    'activities.fishing.title' => 'Fishing Tours',
+    'activities.fishing.desc' => 'Deep-sea fishing adventures along Angola\'s pristine Atlantic coastline with expert guides',
+    'activities.fishing.duration' => 'Half day or full day',
+    
     // Gallery
     'gallery.title' => 'Our Gallery',
     'gallery.subtitle' => 'Discover the beauty and diversity of Angola',
@@ -185,6 +189,20 @@ return [
     'reviews.card3.author' => 'Wildlife Photography Group',
     'reviews.card3.rating' => '5/5 Stars',
     'reviews.read_full' => 'Read Full Review',
+    
+    // Fishing Page
+    'fishing.page.title' => 'Fishing Tours - Experience Angola\'s Atlantic Coast',
+    'fishing.page.description' => 'Deep-sea fishing adventures along Angola\'s pristine Atlantic coastline with professional guides and equipment.',
+    'fishing.title' => 'Deep-Sea Fishing Adventures',
+    'fishing.subtitle' => 'Experience world-class fishing along Angola\'s Atlantic coast',
+    'fishing.videos.title' => 'Fishing Adventures in Action',
+    'fishing.videos.subtitle' => 'Watch our latest fishing expeditions and catches',
+    'fishing.gallery.title' => 'Fishing Gallery',
+    'fishing.gallery.subtitle' => 'Captures from our fishing adventures',
+    'fishing.back_home' => '← Back to Home',
+    'fishing.video1.title' => 'Amberjacks Fishing',
+    'fishing.video2.title' => 'Boat Amber Fillet',
+    'fishing.video3.title' => 'Fishing Advertisement',
     
     // Contact
     'contact.title' => 'Get In Touch',

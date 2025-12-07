@@ -145,6 +145,10 @@ return [
     'activities.photo.desc' => 'Capturez la beauté des paysages et cultures diverses de l\'Angola',
     'activities.photo.duration' => 'Personnalisable',
     
+    'activities.fishing.title' => 'Tours de Pêche',
+    'activities.fishing.desc' => 'Aventures de pêche en haute mer le long de la côte atlantique vierge de l\'Angola avec des guides experts',
+    'activities.fishing.duration' => 'Demi-journée ou journée complète',
+    
     // Gallery
     'gallery.title' => 'Notre Galerie',
     'gallery.subtitle' => 'Découvrez la beauté et diversité de l\'Angola',
@@ -185,6 +189,20 @@ return [
     'reviews.card3.author' => 'Groupe Photographie Faune',
     'reviews.card3.rating' => '5/5 Étoiles',
     'reviews.read_full' => 'Lire la Critique Complète',
+    
+    // Fishing Page
+    'fishing.page.title' => 'Tours de Pêche - Découvrez la Côte Atlantique de l\'Angola',
+    'fishing.page.description' => 'Aventures de pêche en haute mer le long de la côte atlantique vierge de l\'Angola avec des guides professionnels et équipement.',
+    'fishing.title' => 'Aventures de Pêche en Haute Mer',
+    'fishing.subtitle' => 'Découvrez la pêche de classe mondiale le long de la côte atlantique de l\'Angola',
+    'fishing.videos.title' => 'Aventures de Pêche en Action',
+    'fishing.videos.subtitle' => 'Regardez nos dernières expéditions de pêche et prises',
+    'fishing.gallery.title' => 'Galerie de Pêche',
+    'fishing.gallery.subtitle' => 'Images de nos aventures de pêche',
+    'fishing.back_home' => '← Retour à l\'Accueil',
+    'fishing.video1.title' => 'Pêche aux Sérioles',
+    'fishing.video2.title' => 'Filetage sur le Bateau',
+    'fishing.video3.title' => 'Publicité de Pêche',
     
     // Contact
     'contact.title' => 'Contactez-Nous',

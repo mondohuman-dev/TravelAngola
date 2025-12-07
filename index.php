@@ -350,6 +350,11 @@ require_once 'includes/language-config.php';
                         <h3><?= t('activities.photo.title') ?></h3>
                         <p><?= t('activities.photo.desc') ?></p>
                     </div>
+                    <div class="activity-card">
+                        <h3><?= t('activities.fishing.title') ?></h3>
+                        <p><?= t('activities.fishing.desc') ?></p>
+                        <a href="fishing.php" class="activity-link"><?= getCurrentLanguage() === 'pt' ? 'Ver Tours de Pesca' : (getCurrentLanguage() === 'fr' ? 'Voir Tours de Pêche' : (getCurrentLanguage() === 'es' ? 'Ver Tours de Pesca' : 'View Fishing Tours')) ?> →</a>
+                    </div>
                 </div>
             </div>
         </section>

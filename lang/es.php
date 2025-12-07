@@ -145,6 +145,10 @@ return [
     'activities.photo.desc' => 'Captura la belleza de los paisajes y culturas diversas de Angola',
     'activities.photo.duration' => 'Personalizable',
     
+    'activities.fishing.title' => 'Tours de Pesca',
+    'activities.fishing.desc' => 'Aventuras de pesca en alta mar a lo largo de la costa atlántica prístina de Angola con guías expertos',
+    'activities.fishing.duration' => 'Medio día o día completo',
+    
     // Gallery
     'gallery.title' => 'Nuestra Galería',
     'gallery.subtitle' => 'Descubre la belleza y diversidad de Angola',
@@ -185,6 +189,20 @@ return [
     'reviews.card3.author' => 'Grupo Fotografía Vida Silvestre',
     'reviews.card3.rating' => '5/5 Estrellas',
     'reviews.read_full' => 'Leer Reseña Completa',
+    
+    // Fishing Page
+    'fishing.page.title' => 'Tours de Pesca - Experimenta la Costa Atlántica de Angola',
+    'fishing.page.description' => 'Aventuras de pesca en alta mar a lo largo de la costa atlántica prístina de Angola con guías profesionales y equipo.',
+    'fishing.title' => 'Aventuras de Pesca en Alta Mar',
+    'fishing.subtitle' => 'Experimenta pesca de clase mundial a lo largo de la costa atlántica de Angola',
+    'fishing.videos.title' => 'Aventuras de Pesca en Acción',
+    'fishing.videos.subtitle' => 'Mira nuestras últimas expediciones de pesca y capturas',
+    'fishing.gallery.title' => 'Galería de Pesca',
+    'fishing.gallery.subtitle' => 'Capturas de nuestras aventuras de pesca',
+    'fishing.back_home' => '← Volver al Inicio',
+    'fishing.video1.title' => 'Pesca de Jureles',
+    'fishing.video2.title' => 'Fileteado en el Barco',
+    'fishing.video3.title' => 'Publicidad de Pesca',
     
     // Contact
     'contact.title' => 'Contáctanos',

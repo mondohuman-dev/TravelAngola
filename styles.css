@@ -211,6 +211,23 @@ section {
     margin-bottom: 1rem;
 }
 
+.activity-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.activity-link:hover {
+    color: #2d5016;
+    border-bottom-color: #d4af37;
+    transform: translateX(5px);
+}
+
 /* Contact Form */
 .contact-form {
     max-width: 600px;

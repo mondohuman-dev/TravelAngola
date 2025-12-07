@@ -145,6 +145,10 @@ return [
     'activities.photo.desc' => 'Capture a beleza das paisagens e culturas diversas de Angola',
     'activities.photo.duration' => 'Personalizável',
     
+    'activities.fishing.title' => 'Tours de Pesca',
+    'activities.fishing.desc' => 'Aventuras de pesca em alto mar ao longo da costa atlântica pristina de Angola com guias especializados',
+    'activities.fishing.duration' => 'Meio dia ou dia completo',
+    
     // Gallery
     'gallery.title' => 'A Nossa Galeria',
     'gallery.subtitle' => 'Descubra a beleza e diversidade de Angola',
@@ -185,6 +189,20 @@ return [
     'reviews.card3.author' => 'Grupo de Fotografia de Vida Selvagem',
     'reviews.card3.rating' => '5/5 Estrelas',
     'reviews.read_full' => 'Ler Revisão Completa',
+    
+    // Fishing Page
+    'fishing.page.title' => 'Tours de Pesca - Experimente a Costa Atlântica de Angola',
+    'fishing.page.description' => 'Aventuras de pesca em alto mar ao longo da costa atlântica pristina de Angola com guias profissionais e equipamento.',
+    'fishing.title' => 'Aventuras de Pesca em Alto Mar',
+    'fishing.subtitle' => 'Experimente pesca de classe mundial ao longo da costa atlântica de Angola',
+    'fishing.videos.title' => 'Aventuras de Pesca em Ação',
+    'fishing.videos.subtitle' => 'Veja as nossas últimas expedições de pesca e capturas',
+    'fishing.gallery.title' => 'Galeria de Pesca',
+    'fishing.gallery.subtitle' => 'Capturas das nossas aventuras de pesca',
+    'fishing.back_home' => '← Voltar ao Início',
+    'fishing.video1.title' => 'Pesca de Amberjacks',
+    'fishing.video2.title' => 'Fileteamento no Barco',
+    'fishing.video3.title' => 'Publicidade de Pesca',
     
     // Contact
     'contact.title' => 'Entre em Contacto',
