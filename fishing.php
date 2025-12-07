@@ -16,12 +16,12 @@ require_once 'includes/language-config.php';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
-        /* Fishing page specific styles */
+        /* Fishing page specific styles matching main site theme */
         .fishing-hero {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #0f4c75 100%);
+            background: linear-gradient(135deg, #2d5016 0%, #d4af37 100%);
             color: white;
             padding: 120px 0 80px;
             text-align: center;
@@ -194,6 +194,101 @@ require_once 'includes/language-config.php';
             margin-top: 2rem;
         }
         
+        /* Lightbox Modal Styles */
+        .lightbox-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .lightbox-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+        
+        .lightbox-content img {
+            width: 100%;
+            height: 100%;
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: -10px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            padding: 10px;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .lightbox-close:hover {
+            color: #d4af37;
+            transform: scale(1.1);
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 24px;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .lightbox-nav:hover {
+            background: rgba(212, 175, 55, 0.3);
+            color: #d4af37;
+        }
+        
+        .lightbox-prev {
+            left: -60px;
+        }
+        
+        .lightbox-next {
+            right: -60px;
+        }
+        
+        .lightbox-counter {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 14px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+        
         /* Responsive design */
         @media (max-width: 768px) {
             .fishing-hero h1 {
@@ -217,6 +312,26 @@ require_once 'includes/language-config.php';
             .videos-section,
             .fishing-gallery {
                 padding: 60px 0;
+            }
+            
+            /* Lightbox responsive */
+            .lightbox-nav {
+                font-size: 18px;
+                padding: 10px 15px;
+            }
+            
+            .lightbox-prev {
+                left: -40px;
+            }
+            
+            .lightbox-next {
+                right: -40px;
+            }
+            
+            .lightbox-close {
+                top: -30px;
+                right: 0;
+                font-size: 24px;
             }
         }
     </style>
@@ -489,6 +604,89 @@ require_once 'includes/language-config.php';
                 }
             `;
             document.head.appendChild(style);
+        });
+
+        // Lightbox functionality for fishing gallery
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryItems = document.querySelectorAll('.fishing-gallery-item');
+            const body = document.body;
+
+            // Create lightbox modal HTML
+            const lightboxHTML = `
+                <div id="fishing-lightbox" class="lightbox-modal">
+                    <div class="lightbox-content">
+                        <button class="lightbox-close" onclick="closeFishingLightbox()">&times;</button>
+                        <button class="lightbox-nav lightbox-prev" onclick="changeFishingLightboxImage(-1)">&lsaquo;</button>
+                        <img id="fishing-lightbox-img" src="" alt="">
+                        <button class="lightbox-nav lightbox-next" onclick="changeFishingLightboxImage(1)">&rsaquo;</button>
+                        <div class="lightbox-counter">
+                            <span id="fishing-current-image">1</span> / <span id="fishing-total-images">${galleryItems.length}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            body.insertAdjacentHTML('beforeend', lightboxHTML);
+
+            const lightbox = document.getElementById('fishing-lightbox');
+            const lightboxImg = document.getElementById('fishing-lightbox-img');
+            const currentImageSpan = document.getElementById('fishing-current-image');
+            let currentImageIndex = 0;
+
+            // Add click handlers to gallery items
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    currentImageIndex = index;
+                    const img = this.querySelector('img');
+                    lightboxImg.src = img.src;
+                    lightboxImg.alt = img.alt;
+                    currentImageSpan.textContent = index + 1;
+                    lightbox.classList.add('active');
+                    body.style.overflow = 'hidden';
+                });
+            });
+
+            // Global functions for lightbox navigation
+            window.closeFishingLightbox = function() {
+                lightbox.classList.remove('active');
+                body.style.overflow = 'auto';
+            };
+
+            window.changeFishingLightboxImage = function(direction) {
+                currentImageIndex += direction;
+                
+                if (currentImageIndex >= galleryItems.length) {
+                    currentImageIndex = 0;
+                } else if (currentImageIndex < 0) {
+                    currentImageIndex = galleryItems.length - 1;
+                }
+                
+                const img = galleryItems[currentImageIndex].querySelector('img');
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                currentImageSpan.textContent = currentImageIndex + 1;
+            };
+
+            // Close lightbox when clicking outside image
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    closeFishingLightbox();
+                }
+            });
+
+            // Close lightbox with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    closeFishingLightbox();
+                }
+                if (lightbox.classList.contains('active')) {
+                    if (e.key === 'ArrowRight') {
+                        changeFishingLightboxImage(1);
+                    } else if (e.key === 'ArrowLeft') {
+                        changeFishingLightboxImage(-1);
+                    }
+                }
+            });
         });
     </script>
 </body>

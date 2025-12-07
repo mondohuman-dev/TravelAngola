@@ -148,6 +148,7 @@ return [
     'activities.fishing.title' => 'Fishing Tours',
     'activities.fishing.desc' => 'Deep-sea fishing adventures along Angola\'s pristine Atlantic coastline with expert guides',
     'activities.fishing.duration' => 'Half day or full day',
+    'activities.fishing.view_tours' => 'View Fishing Tours',
     
     // Gallery
     'gallery.title' => 'Our Gallery',

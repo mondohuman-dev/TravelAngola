@@ -148,6 +148,7 @@ return [
     'activities.fishing.title' => 'Tours de Pêche',
     'activities.fishing.desc' => 'Aventures de pêche en haute mer le long de la côte atlantique vierge de l\'Angola avec des guides experts',
     'activities.fishing.duration' => 'Demi-journée ou journée complète',
+    'activities.fishing.view_tours' => 'Voir Tours de Pêche',
     
     // Gallery
     'gallery.title' => 'Notre Galerie',

@@ -148,6 +148,7 @@ return [
     'activities.fishing.title' => 'Tours de Pesca',
     'activities.fishing.desc' => 'Aventuras de pesca em alto mar ao longo da costa atlântica pristina de Angola com guias especializados',
     'activities.fishing.duration' => 'Meio dia ou dia completo',
+    'activities.fishing.view_tours' => 'Ver Tours de Pesca',
     
     // Gallery
     'gallery.title' => 'A Nossa Galeria',
