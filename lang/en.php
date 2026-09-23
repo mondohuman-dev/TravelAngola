@@ -15,6 +15,7 @@ return [
     'nav.about' => 'About',
     'nav.destinations' => 'Destinations',
     'nav.activities' => 'Activities',
+    'nav.special' => 'Special',
     'nav.gallery' => 'Gallery',
     'nav.reviews' => 'Reviews',
     'nav.contact' => 'Contact',

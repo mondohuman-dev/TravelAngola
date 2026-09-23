@@ -1,7 +1,13 @@
 <?php
 require_once 'includes/language-config.php';
+require_once 'includes/special-translations.php';
 $inquiryParam = filter_input(INPUT_GET, 'inquiry', FILTER_UNSAFE_RAW);
 $defaultInquirySubject = trim(is_string($inquiryParam) ? $inquiryParam : '');
+$special = special_content();
+$specialLanguage = rawurlencode(getCurrentLanguage());
+$specialDetailsUrl = 'special.php?lang=' . $specialLanguage;
+$specialInquiryUrl = 'index.php?lang=' . $specialLanguage . '&inquiry=' . rawurlencode('Angola Christmas 2026') . '#contact';
+$showChristmasSpecial = new DateTimeImmutable('now', new DateTimeZone('Africa/Windhoek')) < new DateTimeImmutable('2027-01-08 00:00:00', new DateTimeZone('Africa/Windhoek'));
 ?>
 <!DOCTYPE html>
 <html lang="<?= getPageLanguage() ?>" dir="<?= getTextDirection() ?>">
@@ -13,6 +19,7 @@ $defaultInquirySubject = trim(is_string($inquiryParam) ? $inquiryParam : '');
     <meta name="keywords" content="<?= __('page.keywords') ?>">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="special.css">
     <!-- Flag Icons CSS Library -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,6 +37,7 @@ $defaultInquirySubject = trim(is_string($inquiryParam) ? $inquiryParam : '');
                 <li><a href="#about"><?= t('nav.about') ?></a></li>
                 <li><a href="#destinations"><?= t('nav.destinations') ?></a></li>
                 <li><a href="#activities"><?= t('nav.activities') ?></a></li>
+                <li><a href="<?= htmlspecialchars($specialDetailsUrl, ENT_QUOTES, 'UTF-8') ?>"><?= t('nav.special', 'Special') ?></a></li>
                 <li><a href="gallery.php"><?= t('nav.gallery') ?></a></li>
                 <li><a href="#reviews"><?= t('nav.reviews') ?></a></li>
                 <li><a href="#contact"><?= t('nav.contact') ?></a></li>
@@ -662,7 +670,32 @@ $defaultInquirySubject = trim(is_string($inquiryParam) ? $inquiryParam : '');
         </div>
     </footer>
 
+    <?php if ($showChristmasSpecial): ?>
+        <div class="ta-special-popup" id="ta-special-popup" hidden>
+            <div class="ta-special-popup__dialog" role="dialog" aria-modal="true" aria-labelledby="ta-special-popup-title">
+                <button class="ta-special-popup__close" type="button" aria-label="<?= htmlspecialchars($special['close'], ENT_QUOTES, 'UTF-8') ?>">×</button>
+                <img class="ta-special-popup__image" src="images/gal74.webp" alt="Oceanus pool and coastal accommodation at Baía das Pipas">
+                <div class="ta-special-popup__copy">
+                    <p class="ta-special-kicker"><?= htmlspecialchars($special['limited'], ENT_QUOTES, 'UTF-8') ?></p>
+                    <h2 id="ta-special-popup-title"><?= htmlspecialchars($special['title'], ENT_QUOTES, 'UTF-8') ?></h2>
+                    <p class="ta-special-popup__subtitle"><?= htmlspecialchars($special['popup_subtitle'], ENT_QUOTES, 'UTF-8') ?></p>
+                    <p class="ta-special-popup__date"><strong>19 Dec 2026 – 7 Jan 2027</strong><span><?= htmlspecialchars($special['duration'] . ' / ' . $special['nights'], ENT_QUOTES, 'UTF-8') ?></span></p>
+                    <div class="ta-special-popup__prices">
+                        <p><span><?= htmlspecialchars($special['camping'], ENT_QUOTES, 'UTF-8') ?></span><strong>N$6,876</strong><small><?= htmlspecialchars($special['per_person'], ENT_QUOTES, 'UTF-8') ?></small></p>
+                        <p><span><?= htmlspecialchars($special['lodging'], ENT_QUOTES, 'UTF-8') ?></span><strong>N$21,114</strong><small><?= htmlspecialchars($special['sharing'], ENT_QUOTES, 'UTF-8') ?></small></p>
+                    </div>
+                    <p class="ta-special-popup__children"><?= htmlspecialchars($special['popup_children'], ENT_QUOTES, 'UTF-8') ?></p>
+                    <div class="ta-special-popup__actions">
+                        <a class="ta-special-button" href="<?= htmlspecialchars($specialInquiryUrl, ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars($special['request'], ENT_QUOTES, 'UTF-8') ?></a>
+                        <a class="ta-special-button ta-special-button--outline" href="<?= htmlspecialchars($specialDetailsUrl, ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars($special['details'], ENT_QUOTES, 'UTF-8') ?></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
     <script src="gallery.js"></script>
+    <?php if ($showChristmasSpecial): ?><script src="special.js"></script><?php endif; ?>
     <script>
         const inquiryLabelPrefix = <?= json_encode(t('contact.form.inquiry_context', 'Inquiring about')) ?>;
 
