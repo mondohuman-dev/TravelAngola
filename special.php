@@ -142,7 +142,7 @@ function special_escape(string $value): string
                     <h2><?= special_escape($special['gallery_title']) ?></h2>
                 </header>
                 <div class="ta-special-gallery">
-                    <img src="images/gal73.webp" alt="Oceanus coastal lodge grounds">
+                    <img src="images/special-beach.webp" alt="Beach camping on the Angolan coast">
                     <img src="images/gal72.webp" alt="Oceanus guest room entrance">
                     <img src="images/gal74.webp" alt="Oceanus swimming pool">
                     <img src="images/gal69.webp" alt="Oceanus lodge terrace">
