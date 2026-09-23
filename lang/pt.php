@@ -24,6 +24,10 @@ return [
     'hero.title' => 'Descubra Angola',
     'hero.subtitle' => 'Onde a aventura encontra a cultura no coração da África',
     'hero.cta' => 'Planeie a Sua Jornada',
+    'hero.cta_primary' => 'Explorar Tours Guiados',
+    'hero.cta_secondary' => 'Criar um Itinerário à Medida',
+    'hero.price_note' => 'Itinerários personalizados a partir de $XXX USD por dia.',
+    'hero.bespoke_subject' => 'Itinerário Personalizado em Angola',
     'hero.scroll_discover' => 'Role para descobrir mais',
     
     // About Section
@@ -149,6 +153,7 @@ return [
     'activities.fishing.desc' => 'Aventuras de pesca em alto mar ao longo da costa atlântica pristina de Angola com guias especializados',
     'activities.fishing.duration' => 'Meio dia ou dia completo',
     'activities.fishing.view_tours' => 'Ver Tours de Pesca',
+    'activities.enquire' => 'Pedir Informações Sobre Esta Experiência',
     
     // Gallery
     'gallery.title' => 'A Nossa Galeria',
@@ -177,19 +182,28 @@ return [
     // Reviews
     'reviews.title' => 'O Que Dizem os Nossos Viajantes',
     'reviews.subtitle' => 'Experiências reais dos nossos hóspedes',
-    'reviews.card1.title' => 'Aventura Incrível 4x4 na Namíbia',
-    'reviews.card1.excerpt' => 'Uma jornada incrível pelas paisagens deslumbrantes da Namíbia com guias excelentes e rotas perfeitamente planeadas.',
-    'reviews.card1.author' => 'Revisão de Blogger de Viagem',
+    'reviews.card1.title' => 'Experiência Inesquecível em Angola',
+    'reviews.card1.excerpt' => 'Da cultura vibrante de Luanda às deslumbrantes Quedas de Kalandula, cada momento foi perfeitamente curado.',
+    'reviews.card1.author' => 'Sarah & Mike Johnson',
     'reviews.card1.rating' => '5/5 Estrelas',
-    'reviews.card2.title' => 'Experiência Inesquecível em Angola',
-    'reviews.card2.excerpt' => 'Da cultura vibrante de Luanda às deslumbrantes Quedas de Kalandula, cada momento foi perfeitamente curado.',
-    'reviews.card2.author' => 'Sarah & Mike Johnson',
+    'reviews.card2.title' => 'Aventura 4x4 Transfronteiriça na Namíbia',
+    'reviews.card2.excerpt' => 'Um percurso sem complicações que juntou o apoio de planeamento em Angola com as paisagens dramáticas da Namíbia e guias especializados.',
+    'reviews.card2.author' => 'Revisão de Blogger de Viagem',
     'reviews.card2.rating' => '5/5 Estrelas',
     'reviews.card3.title' => 'Experiência de Safari Profissional',
     'reviews.card3.excerpt' => 'Observação de vida selvagem no Parque Nacional da Kissama superou expectativas. Guias profissionais tornaram educativo e emocionante.',
     'reviews.card3.author' => 'Grupo de Fotografia de Vida Selvagem',
     'reviews.card3.rating' => '5/5 Estrelas',
     'reviews.read_full' => 'Ler Revisão Completa',
+
+    // Sister Brands
+    'sister_brands.title' => 'Descubra os nossos outros sites para ideias de ferias',
+    'sister_brands.visit_website' => 'Visitar Website',
+    'sister_brands.inquire_now' => 'Pedir Informacoes',
+    'sister_brands.namibia.title' => 'The Namibia Safari',
+    'sister_brands.namibia.description' => 'Safaris de luxo, expedicoes no deserto e tours de vida selvagem na vizinha Namibia.',
+    'sister_brands.oceanus.title' => 'The Oceanus',
+    'sister_brands.oceanus.description' => 'Safaris marinhos premium, excursoes costeiras, pesca desportiva offshore e experiencias liveaboard no oceano.',
     
     // Fishing Page
     'fishing.page.title' => 'Tours de Pesca - Experimente a Costa Atlântica de Angola',
@@ -276,8 +290,8 @@ return [
     'common.info' => 'Informação',
     
     // SEO and Meta
-    'meta.home.title' => 'Travel Angola - Descubra a Beleza de Angola | Tours e Experiências Autênticas',
-    'meta.home.description' => 'Explore Angola com tours personalizados, safaris de vida selvagem, aventuras na praia e experiências culturais autênticas. Planeie a sua viagem dos sonhos connosco.',
+    'meta.home.title' => 'Travel Angola - Tours Guiados, Itinerários à Medida e Experiências Autênticas',
+    'meta.home.description' => 'Explore Angola com tours guiados, itinerários personalizados, safaris de vida selvagem, aventuras na praia, pesca em alto mar e experiências culturais autênticas.',
     
     'meta.about.title' => 'Sobre Nós - Travel Angola | Especialistas em Turismo Angolano',
     'meta.about.description' => 'Conheça a Travel Angola, especialistas em criar experiências de viagem únicas e memoráveis por toda Angola.',

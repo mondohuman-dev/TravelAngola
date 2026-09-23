@@ -24,6 +24,10 @@ return [
     'hero.title' => 'Découvrez l\'Angola',
     'hero.subtitle' => 'Où l\'aventure rencontre la culture au cœur de l\'Afrique',
     'hero.cta' => 'Planifiez Votre Voyage',
+    'hero.cta_primary' => 'Explorer les Circuits Guidés',
+    'hero.cta_secondary' => 'Créer un Itinéraire Sur Mesure',
+    'hero.price_note' => 'Itinéraires personnalisés à partir de $XXX USD par jour.',
+    'hero.bespoke_subject' => 'Itinéraire Sur Mesure en Angola',
     'hero.scroll_discover' => 'Faites défiler pour en découvrir plus',
     
     // About Section
@@ -149,6 +153,7 @@ return [
     'activities.fishing.desc' => 'Aventures de pêche en haute mer le long de la côte atlantique vierge de l\'Angola avec des guides experts',
     'activities.fishing.duration' => 'Demi-journée ou journée complète',
     'activities.fishing.view_tours' => 'Voir Tours de Pêche',
+    'activities.enquire' => 'Demander des Informations sur cette Expérience',
     
     // Gallery
     'gallery.title' => 'Notre Galerie',
@@ -177,13 +182,13 @@ return [
     // Reviews
     'reviews.title' => 'Ce Que Disent Nos Voyageurs',
     'reviews.subtitle' => 'Expériences réelles de nos invités',
-    'reviews.card1.title' => 'Aventure 4x4 Namibie Incroyable',
-    'reviews.card1.excerpt' => 'Un voyage incroyable à travers les paysages époustouflants de la Namibie avec d\'excellents guides et des itinéraires parfaitement planifiés.',
-    'reviews.card1.author' => 'Critique de Blogueur Voyage',
+    'reviews.card1.title' => 'Expérience Angola Inoubliable',
+    'reviews.card1.excerpt' => 'De la culture vibrante de Luanda aux chutes de Kalandula à couper le souffle, chaque moment a été parfaitement orchestré.',
+    'reviews.card1.author' => 'Sarah & Mike Johnson',
     'reviews.card1.rating' => '5/5 Étoiles',
-    'reviews.card2.title' => 'Expérience Angola Inoubliable',
-    'reviews.card2.excerpt' => 'De la culture vibrante de Luanda aux chutes de Kalandula à couper le souffle, chaque moment a été parfaitement orchestré.',
-    'reviews.card2.author' => 'Sarah & Mike Johnson',
+    'reviews.card2.title' => 'Aventure 4x4 Transfrontalière en Namibie',
+    'reviews.card2.excerpt' => 'Un itinéraire fluide qui combinait l\'accompagnement en Angola avec les paysages spectaculaires de la Namibie et des guides experts.',
+    'reviews.card2.author' => 'Critique de Blogueur Voyage',
     'reviews.card2.rating' => '5/5 Étoiles',
     'reviews.card3.title' => 'Expérience Safari Professionnelle',
     'reviews.card3.excerpt' => 'L\'observation de la faune au Parc National de Kissama a dépassé les attentes. Des guides professionnels ont rendu cela éducatif et passionnant.',
@@ -276,8 +281,8 @@ return [
     'common.info' => 'Information',
     
     // SEO and Meta
-    'meta.home.title' => 'Travel Angola - Découvrez la Beauté de l\'Angola | Tours et Expériences Authentiques',
-    'meta.home.description' => 'Explorez l\'Angola avec des tours personnalisés, safaris animaliers, aventures de plage et expériences culturelles authentiques.',
+    'meta.home.title' => 'Travel Angola - Circuits Guidés, Itinéraires Sur Mesure et Expériences Authentiques',
+    'meta.home.description' => 'Explorez l\'Angola avec des circuits guidés, des itinéraires personnalisés, des safaris animaliers, des aventures de plage, la pêche en haute mer et des expériences culturelles authentiques.',
     
     'meta.about.title' => 'À Propos - Travel Angola | Spécialistes du Tourisme Angolais',
     'meta.about.description' => 'Rencontrez Travel Angola, spécialistes de la création d\'expériences de voyage uniques et mémorables à travers l\'Angola.',

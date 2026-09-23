@@ -24,6 +24,10 @@ return [
     'hero.title' => 'Discover Angola',
     'hero.subtitle' => 'Where adventure meets culture in the heart of Africa',
     'hero.cta' => 'Plan Your Journey',
+    'hero.cta_primary' => 'Explore Guided Tours',
+    'hero.cta_secondary' => 'Build a Bespoke Itinerary',
+    'hero.price_note' => 'We can help you Desing your Custom Itineraries',
+    'hero.bespoke_subject' => 'Bespoke Angola Itinerary',
     'hero.scroll_discover' => 'Scroll to discover more',
     
     // About Section
@@ -149,6 +153,7 @@ return [
     'activities.fishing.desc' => 'Deep-sea fishing adventures along Angola\'s pristine Atlantic coastline with expert guides',
     'activities.fishing.duration' => 'Half day or full day',
     'activities.fishing.view_tours' => 'View Fishing Tours',
+    'activities.enquire' => 'Enquire About This Experience',
     
     // Gallery
     'gallery.title' => 'Our Gallery',
@@ -177,19 +182,28 @@ return [
     // Reviews
     'reviews.title' => 'What Our Travelers Say',
     'reviews.subtitle' => 'Real experiences from our guests',
-    'reviews.card1.title' => 'Amazing Namibia 4x4 Adventure',
-    'reviews.card1.excerpt' => 'An incredible journey through Namibia\'s stunning landscapes with excellent guides and perfectly planned routes.',
-    'reviews.card1.author' => 'Travel Blogger Review',
+    'reviews.card1.title' => 'Unforgettable Angola Experience',
+    'reviews.card1.excerpt' => 'From Luanda\'s vibrant culture to the breathtaking Kalandula Falls, every moment was perfectly curated.',
+    'reviews.card1.author' => 'Sarah & Mike Johnson',
     'reviews.card1.rating' => '5/5 Stars',
-    'reviews.card2.title' => 'Unforgettable Angola Experience',
-    'reviews.card2.excerpt' => 'From Luanda\'s vibrant culture to the breathtaking Kalandula Falls, every moment was perfectly curated.',
-    'reviews.card2.author' => 'Sarah & Mike Johnson',
+    'reviews.card2.title' => 'Cross-Border Namibia 4x4 Adventure',
+    'reviews.card2.excerpt' => 'A seamless cross-border route that combined Angola planning support with Namibia\'s dramatic landscapes and expert guides.',
+    'reviews.card2.author' => 'Travel Blogger Review',
     'reviews.card2.rating' => '5/5 Stars',
     'reviews.card3.title' => 'Professional Safari Experience',
     'reviews.card3.excerpt' => 'Wildlife viewing in Kissama National Park exceeded expectations. Professional guides made it educational and exciting.',
     'reviews.card3.author' => 'Wildlife Photography Group',
     'reviews.card3.rating' => '5/5 Stars',
     'reviews.read_full' => 'Read Full Review',
+
+    // Sister Brands
+    'sister_brands.title' => 'Check out our other websites for holiday ideas',
+    'sister_brands.visit_website' => 'Visit Website',
+    'sister_brands.inquire_now' => 'Inquire Now',
+    'sister_brands.namibia.title' => 'The Namibia Safari',
+    'sister_brands.namibia.description' => 'Luxury safaris, desert expeditions, and wildlife tours in neighboring Namibia.',
+    'sister_brands.oceanus.title' => 'The Oceanus',
+    'sister_brands.oceanus.description' => 'Premium marine safaris, coastal excursions, offshore sport fishing, and liveaboard ocean experiences.',
     
     // Fishing Page
     'fishing.page.title' => 'Fishing Tours - Experience Angola\'s Atlantic Coast',
@@ -276,8 +290,8 @@ return [
     'common.info' => 'Information',
     
     // SEO and Meta
-    'meta.home.title' => 'Travel Angola - Discover the Beauty of Angola | Authentic Tours & Experiences',
-    'meta.home.description' => 'Explore Angola with custom tours, wildlife safaris, beach adventures and authentic cultural experiences. Plan your dream trip with us.',
+    'meta.home.title' => 'Travel Angola - Guided Tours, Bespoke Itineraries & Authentic Experiences',
+    'meta.home.description' => 'Explore Angola with guided tours, custom itineraries, wildlife safaris, beach adventures, deep-sea fishing and authentic cultural experiences.',
     
     'meta.about.title' => 'About Us - Travel Angola | Angolan Tourism Specialists',
     'meta.about.description' => 'Meet Travel Angola, specialists in creating unique and memorable travel experiences throughout Angola.',

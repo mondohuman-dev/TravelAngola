@@ -1,14 +1,15 @@
 <?php
-// Initialize language system
 require_once 'includes/language-config.php';
+$inquiryParam = filter_input(INPUT_GET, 'inquiry', FILTER_UNSAFE_RAW);
+$defaultInquirySubject = trim(is_string($inquiryParam) ? $inquiryParam : '');
 ?>
 <!DOCTYPE html>
 <html lang="<?= getPageLanguage() ?>" dir="<?= getTextDirection() ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= __('meta.home.title') ?></title>
-    <meta name="description" content="<?= __('meta.home.description') ?>">
+    <title><?= t('meta.home.title') ?></title>
+    <meta name="description" content="<?= t('meta.home.description') ?>">
     <meta name="keywords" content="<?= __('page.keywords') ?>">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" href="styles.css">
@@ -20,29 +21,32 @@ require_once 'includes/language-config.php';
 </head>
 <body>
     <header class="hero">
-        <nav>
-            <div class="logo">
+        <nav class="main-nav" aria-label="Primary">
+            <a href="index.php" class="logo" aria-label="Travel Angola Home">
                 <img src="images/logo_sm.webp" alt="Travel Angola Logo" class="logo-img">
                 <span class="logo-text">Travel Angola</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#about"><?= __('nav.about') ?></a></li>
-                <li><a href="#destinations"><?= __('nav.destinations') ?></a></li>
-                <li><a href="#activities"><?= __('nav.activities') ?></a></li>
-                <li><a href="gallery.php"><?= __('nav.gallery') ?></a></li>
-                <li><a href="#reviews"><?= __('nav.reviews') ?></a></li>
-                <li><a href="#contact"><?= __('nav.contact') ?></a></li>
+            </a>
+            <ul class="nav-links" id="primary-nav">
+                <li><a href="#about"><?= t('nav.about') ?></a></li>
+                <li><a href="#destinations"><?= t('nav.destinations') ?></a></li>
+                <li><a href="#activities"><?= t('nav.activities') ?></a></li>
+                <li><a href="gallery.php"><?= t('nav.gallery') ?></a></li>
+                <li><a href="#reviews"><?= t('nav.reviews') ?></a></li>
+                <li><a href="#contact"><?= t('nav.contact') ?></a></li>
             </ul>
+            <div class="language-nav">
+                <?php include 'includes/flag-icon-language-switcher.php'; ?>
+            </div>
         </nav>
         <div class="hero-content">
             <h1><?= t('hero.title') ?></h1>
             <p><?= t('hero.subtitle') ?></p>
-            <a href="#contact" class="cta-button"><?= t('hero.cta') ?></a>
-            
-            <!-- Language Switcher in Header -->
-            <div class="language-nav">
-                <?php include 'includes/flag-icon-language-switcher.php'; ?>
+            <div class="hero-actions">
+                <a href="#activities" class="cta-button"><?= t('hero.cta_primary') ?></a>
+                <a href="?inquiry=<?= rawurlencode(t('hero.bespoke_subject')) ?>#contact" class="cta-button cta-button-secondary"><?= t('hero.cta_secondary') ?></a>
             </div>
+            <p class="hero-offer"><?= t('hero.price_note') ?></p>
+
             <!-- Carousel start -->
             <div class="hero-carousel" aria-roledescription="carousel" aria-label="Hero images carousel">
                 <div class="hc-slides" role="list"></div>
@@ -54,8 +58,21 @@ require_once 'includes/language-config.php';
             </div>
 
             <style>
+            .main-nav {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1.25rem;
+                width: 100%;
+            }
+
+            .main-nav .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
             /* Minimal hero carousel styles (tweak in styles.css if preferred) */
-            .hero-carousel{position:relative;width:100%;max-width:1100px;margin:1.25rem auto;overflow:hidden;border-radius:12px}
+            .hero-carousel{position:relative;width:100%;max-width:1100px;margin:1.25rem auto;overflow:hidden;border-radius:12px;touch-action:pan-y;contain:layout paint}
             .hc-slides{display:flex;transition:transform 0.6s ease;will-change:transform}
             .hc-slide{min-width:100%;box-sizing:border-box;display:flex;align-items:center;justify-content:center;background:#111;background-size:cover;background-position:center;height:320px}
             .hc-slide img{width:100%;height:100%;object-fit:cover;display:block}
@@ -64,8 +81,12 @@ require_once 'includes/language-config.php';
             .hc-indicators{position:absolute;left:50%;transform:translateX(-50%);bottom:10px;display:flex;gap:8px}
             .hc-indicators button{width:10px;height:10px;border-radius:50%;border:0;background:rgba(255,255,255,0.45);cursor:pointer}
             .hc-indicators button[aria-selected="true"]{background:#ff6b6b;box-shadow:0 0 6px rgba(255,107,107,0.6)}
+            .hc-btn:focus-visible,.hc-indicators button:focus-visible{outline:2px solid #fff;outline-offset:2px}
             /* Small screens */
             @media(min-width:900px){ .hero-carousel .hc-slide{height:420px} }
+            @media (prefers-reduced-motion: reduce){
+                .hc-slides{transition:none}
+            }
             
             /* Language switcher enhanced styles */
             .language-nav {
@@ -125,9 +146,23 @@ require_once 'includes/language-config.php';
             
             /* Language nav responsive */
             @media (max-width: 768px) {
+                .main-nav {
+                    flex-direction: column;
+                    align-items: stretch;
+                    gap: 0.75rem;
+                }
+
+                .main-nav .nav-links {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 0.75rem 1rem;
+                }
+
                 .language-nav {
                     flex-wrap: wrap;
                     gap: 10px;
+                    margin: 0;
                 }
                 
                 .language-nav .flag-lang-option,
@@ -140,7 +175,6 @@ require_once 'includes/language-config.php';
 
             <script>
             document.addEventListener('DOMContentLoaded', function() {
-                // Edit this list to match files inside images/carosoul
                 const slides = [
                     'images/carosoul/1car.webp',
                     'images/carosoul/2car.webp',
@@ -159,80 +193,136 @@ require_once 'includes/language-config.php';
                     'images/carosoul/15car.webp'
                 ];
 
-                // Find the carousel container more reliably
                 const root = document.querySelector('.hero-carousel');
                 if (!root) {
-                    console.error('Carousel container not found!');
                     return;
                 }
+
                 const slidesEl = root.querySelector('.hc-slides');
                 const indicatorsEl = root.querySelector('.hc-indicators');
                 const prevBtn = root.querySelector('.hc-prev');
                 const nextBtn = root.querySelector('.hc-next');
+                if (!slidesEl || !indicatorsEl || !prevBtn || !nextBtn || slides.length === 0) {
+                    return;
+                }
 
                 let index = 0;
-                let timer = null;
+                let autoplayTimer = null;
+                const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
                 const AUTOPLAY_MS = 4500;
 
-                // Build slides & indicators
+                slidesEl.id = 'hero-carousel-slides';
+                prevBtn.type = 'button';
+                nextBtn.type = 'button';
+                prevBtn.setAttribute('aria-controls', slidesEl.id);
+                nextBtn.setAttribute('aria-controls', slidesEl.id);
+
+                const slidesFragment = document.createDocumentFragment();
+                const indicatorsFragment = document.createDocumentFragment();
+
                 slides.forEach((src, i) => {
                     const slide = document.createElement('div');
                     slide.className = 'hc-slide';
-                    slide.setAttribute('role','listitem');
-                    // use <img> for accessibility & lazy loading
+                    slide.setAttribute('role', 'listitem');
+
                     const img = document.createElement('img');
                     img.src = src;
                     img.alt = `Angola Landscape ${i + 1}`;
                     img.loading = i === 0 ? 'eager' : 'lazy';
+                    img.decoding = 'async';
+                    if (i === 0) {
+                        img.fetchPriority = 'high';
+                    }
                     slide.appendChild(img);
-                    slidesEl.appendChild(slide);
+                    slidesFragment.appendChild(slide);
 
                     const btn = document.createElement('button');
+                    btn.type = 'button';
                     btn.setAttribute('role', 'tab');
+                    btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+                    btn.setAttribute('tabindex', i === 0 ? '0' : '-1');
                     btn.setAttribute('aria-label', `Go to slide ${i + 1}`);
-                    if (i === 0) btn.setAttribute('aria-selected', 'true');
                     btn.addEventListener('click', () => goTo(i));
-                    indicatorsEl.appendChild(btn);
+                    indicatorsFragment.appendChild(btn);
                 });
+                slidesEl.appendChild(slidesFragment);
+                indicatorsEl.appendChild(indicatorsFragment);
+
+                function updateIndicators(newIndex) {
+                    const dots = indicatorsEl.children;
+                    for (let i = 0; i < dots.length; i += 1) {
+                        const isActive = i === newIndex;
+                        dots[i].setAttribute('aria-selected', isActive ? 'true' : 'false');
+                        dots[i].setAttribute('tabindex', isActive ? '0' : '-1');
+                    }
+                }
 
                 function goTo(newIndex) {
-                    if (newIndex === index) return;
-                    
-                    // Update indicators
-                    indicatorsEl.children[index].removeAttribute('aria-selected');
-                    indicatorsEl.children[newIndex].setAttribute('aria-selected', 'true');
-                    
-                    index = newIndex;
-                    slidesEl.style.transform = `translateX(-${index * 100}%)`;
-                    
-                    resetAutoplay();
+                    const total = slides.length;
+                    const safeIndex = ((newIndex % total) + total) % total;
+                    index = safeIndex;
+                    requestAnimationFrame(() => {
+                        slidesEl.style.transform = `translateX(-${index * 100}%)`;
+                    });
+                    updateIndicators(index);
+                    restartAutoplay();
                 }
 
                 function next() {
-                    goTo((index + 1) % slides.length);
+                    goTo(index + 1);
                 }
 
                 function prev() {
-                    goTo((index - 1 + slides.length) % slides.length);
+                    goTo(index - 1);
                 }
 
-                function resetAutoplay() {
-                    if (timer) clearInterval(timer);
-                    timer = setInterval(next, AUTOPLAY_MS);
+                function stopAutoplay() {
+                    if (autoplayTimer) {
+                        clearInterval(autoplayTimer);
+                        autoplayTimer = null;
+                    }
                 }
 
-                // Event listeners
-                if (prevBtn) prevBtn.addEventListener('click', prev);
-                if (nextBtn) nextBtn.addEventListener('click', next);
+                function startAutoplay() {
+                    if (reduceMotion || document.hidden) {
+                        return;
+                    }
+                    stopAutoplay();
+                    autoplayTimer = setInterval(next, AUTOPLAY_MS);
+                }
 
-                // Start autoplay
-                resetAutoplay();
+                function restartAutoplay() {
+                    stopAutoplay();
+                    startAutoplay();
+                }
 
-                // Pause on hover
-                root.addEventListener('mouseenter', () => {
-                    if (timer) clearInterval(timer);
+                prevBtn.addEventListener('click', prev);
+                nextBtn.addEventListener('click', next);
+                root.addEventListener('mouseenter', stopAutoplay);
+                root.addEventListener('mouseleave', startAutoplay);
+                root.addEventListener('focusin', stopAutoplay);
+                root.addEventListener('focusout', startAutoplay);
+                root.addEventListener('keydown', function(event) {
+                    if (event.key === 'ArrowLeft') {
+                        event.preventDefault();
+                        prev();
+                    }
+                    if (event.key === 'ArrowRight') {
+                        event.preventDefault();
+                        next();
+                    }
                 });
-                root.addEventListener('mouseleave', resetAutoplay);
+
+                document.addEventListener('visibilitychange', function() {
+                    if (document.hidden) {
+                        stopAutoplay();
+                    } else {
+                        startAutoplay();
+                    }
+                });
+
+                goTo(0);
+                startAutoplay();
             });
             </script>
             <!-- Carousel end -->
@@ -257,23 +347,21 @@ require_once 'includes/language-config.php';
                 <h2><?= t('map.title') ?></h2>
                 <div class="map-layout">
                     <div class="map-viewport">
-                        <!-- Map placeholder for lazy loading -->
                         <div id="map-placeholder" class="map-placeholder">
                             <div class="placeholder-content">
                                 <div class="map-icon">🗺️</div>
                                 <h3><?= t('map.title') ?></h3>
                                 <p id="map-status-text"><?= t('map.description') ?></p>
-                                <div id="map-progress" class="progress-container" style="display: none;">
+                                <button type="button" class="load-map-btn"><?= t('map.load', 'Load Interactive Map') ?></button>
+                                <div id="map-progress" class="progress-container" style="display: none;" aria-hidden="true">
                                     <div class="progress-bar">
                                         <div class="progress-fill"></div>
                                     </div>
                                     <div class="progress-text">0%</div>
                                 </div>
-                                <button class="load-map-btn"><?= t('map.load') ?></button>
                             </div>
                         </div>
-                        <!-- If you prefer inline SVG, replace the <object> with the SVG markup and keep id="angola-map" on the root <svg> -->
-                        <object id="angola-map-object" type="image/svg+xml" data="" aria-label="Angola provinces map" style="display: none;"></object>
+                        <object id="angola-map-object" type="image/svg+xml" data="images/angola-map.svg" aria-label="Angola provinces map" style="display: none;"></object>
                     </div>
                     <aside id="province-panel" class="province-panel" aria-live="polite">
                         <h3 id="panel-title"><?= t('province.select') ?></h3>
@@ -329,31 +417,52 @@ require_once 'includes/language-config.php';
                     <div class="activity-card">
                         <h3><?= t('activities.beach.title') ?></h3>
                         <p><?= t('activities.beach.desc') ?></p>
+                        <div class="activity-links">
+                            <a href="?inquiry=<?= rawurlencode(t('activities.beach.title')) ?>#contact" class="activity-link activity-link-secondary"><?= t('activities.enquire') ?> →</a>
+                        </div>
                     </div>
                     <div class="activity-card">
                         <h3><?= t('activities.safari.title') ?></h3>
                         <p><?= t('activities.safari.desc') ?></p>
+                        <div class="activity-links">
+                            <a href="?inquiry=<?= rawurlencode(t('activities.safari.title')) ?>#contact" class="activity-link activity-link-secondary"><?= t('activities.enquire') ?> →</a>
+                        </div>
                     </div>
                     <div class="activity-card">
                         <h3><?= t('activities.culture.title') ?></h3>
                         <p><?= t('activities.culture.desc') ?></p>
+                        <div class="activity-links">
+                            <a href="?inquiry=<?= rawurlencode(t('activities.culture.title')) ?>#contact" class="activity-link activity-link-secondary"><?= t('activities.enquire') ?> →</a>
+                        </div>
                     </div>
                     <div class="activity-card">
                         <h3><?= t('activities.hiking.title') ?></h3>
                         <p><?= t('activities.hiking.desc') ?></p>
+                        <div class="activity-links">
+                            <a href="?inquiry=<?= rawurlencode(t('activities.hiking.title')) ?>#contact" class="activity-link activity-link-secondary"><?= t('activities.enquire') ?> →</a>
+                        </div>
                     </div>
                     <div class="activity-card">
                         <h3><?= t('activities.city.title') ?></h3>
                         <p><?= t('activities.city.desc') ?></p>
+                        <div class="activity-links">
+                            <a href="?inquiry=<?= rawurlencode(t('activities.city.title')) ?>#contact" class="activity-link activity-link-secondary"><?= t('activities.enquire') ?> →</a>
+                        </div>
                     </div>
                     <div class="activity-card">
                         <h3><?= t('activities.photo.title') ?></h3>
                         <p><?= t('activities.photo.desc') ?></p>
+                        <div class="activity-links">
+                            <a href="?inquiry=<?= rawurlencode(t('activities.photo.title')) ?>#contact" class="activity-link activity-link-secondary"><?= t('activities.enquire') ?> →</a>
+                        </div>
                     </div>
                     <div class="activity-card">
                         <h3><?= t('activities.fishing.title') ?></h3>
                         <p><?= t('activities.fishing.desc') ?></p>
-                        <a href="fishing.php" class="activity-link"><?= t('activities.fishing.view_tours') ?> →</a>
+                        <div class="activity-links">
+                            <a href="fishing.php" class="activity-link"><?= t('activities.fishing.view_tours') ?> →</a>
+                            <a href="?inquiry=<?= rawurlencode(t('activities.fishing.title')) ?>#contact" class="activity-link activity-link-secondary"><?= t('activities.enquire') ?> →</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -401,7 +510,6 @@ require_once 'includes/language-config.php';
                         <?= t('gallery.view_full') ?> →
                     </a>
                 </div>
-                </div>
             </div>
         </section>
 
@@ -423,11 +531,8 @@ require_once 'includes/language-config.php';
                         <div class="review-author">
                             <strong><?= t('reviews.card1.author') ?></strong>
                         </div>
-                        <a href="https://sheroamstheglobe.com/travel-namibia-4x4-review/" 
-                           class="review-link" 
-                           target="_blank" 
-                           rel="noopener noreferrer">
-                            <?= t('reviews.read_full') ?> →
+                        <a href="?inquiry=<?= rawurlencode(t('reviews.card1.title')) ?>#contact" class="review-link">
+                            <?= t('common.get_quote') ?> →
                         </a>
                     </div>
 
@@ -442,10 +547,8 @@ require_once 'includes/language-config.php';
                         <div class="review-author">
                             <strong><?= t('reviews.card2.author') ?></strong>
                         </div>
-                        <a href="#" 
-                           class="review-link" 
-                           onclick="alert('<?= getCurrentLanguage() === 'pt' ? 'Mais detalhes em breve!' : (getCurrentLanguage() === 'fr' ? 'Plus de détails bientôt!' : (getCurrentLanguage() === 'es' ? '¡Más detalles pronto!' : 'More details coming soon!')) ?>')">
-                            <?= t('reviews.read_full') ?> →
+                        <a href="?inquiry=<?= rawurlencode(t('reviews.card2.title')) ?>#contact" class="review-link">
+                            <?= t('common.get_quote') ?> →
                         </a>
                     </div>
 
@@ -460,10 +563,8 @@ require_once 'includes/language-config.php';
                         <div class="review-author">
                             <strong><?= t('reviews.card3.author') ?></strong>
                         </div>
-                        <a href="#" 
-                           class="review-link" 
-                           onclick="alert('<?= getCurrentLanguage() === 'pt' ? 'Mais detalhes em breve!' : (getCurrentLanguage() === 'fr' ? 'Plus de détails bientôt!' : (getCurrentLanguage() === 'es' ? '¡Más detalles pronto!' : 'More details coming soon!')) ?>')">
-                            <?= t('reviews.read_full') ?> →
+                        <a href="?inquiry=<?= rawurlencode(t('reviews.card3.title')) ?>#contact" class="review-link">
+                            <?= t('common.get_quote') ?> →
                         </a>
                     </div>
                 </div>
@@ -474,6 +575,7 @@ require_once 'includes/language-config.php';
         <section id="contact" class="contact">
             <div class="container">
                 <h2><?= t('contact.title') ?></h2>
+                <p class="contact-section-intro"><?= t('contact.subtitle') ?></p>
                 
                 <div class="contacts-grid">
                     <div class="contact-card">
@@ -499,6 +601,52 @@ require_once 'includes/language-config.php';
                         <p><?= t('contact.saturday') ?></p>
                     </div>
                 </div>
+
+                <div class="contact-form-wrap">
+                    <h3><?= t('contact.form.title') ?></h3>
+                    <p id="inquiryContext" class="inquiry-note"></p>
+                    <form id="contactForm" class="contact-form" method="post" action="contact-handler.php">
+                        <input type="text" name="name" placeholder="<?= t('contact.form.name') ?>" required>
+                        <input type="email" name="email" placeholder="<?= t('contact.form.email') ?>" required>
+                        <input type="tel" name="phone" placeholder="<?= t('contact.form.phone') ?>">
+                        <input type="text" id="contactSubject" name="subject" placeholder="<?= t('contact.form.subject') ?>" value="<?= htmlspecialchars($defaultInquirySubject, ENT_QUOTES, 'UTF-8') ?>" required>
+                        <textarea name="message" placeholder="<?= t('contact.form.message') ?>" required></textarea>
+                        <button type="submit" class="submit-btn"><?= t('contact.form.send') ?></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="sister-brands">
+            <div class="container">
+                <h2><?= t('sister_brands.title') ?></h2>
+                <div class="sister-brands-grid">
+                    <article class="sister-brand-card">
+                        <h3><?= t('sister_brands.namibia.title') ?></h3>
+                        <p><?= t('sister_brands.namibia.description') ?></p>
+                        <div class="sister-brand-actions">
+                            <a href="https://www.thenamibiasafari.com/" target="_blank" rel="noopener" class="cta-button sister-brand-btn">
+                                <?= t('sister_brands.visit_website') ?>
+                            </a>
+                            <a href="?inquiry=<?= rawurlencode('Namibia Safari Safari Expedition') ?>#contact" class="cta-button sister-brand-btn sister-brand-btn-secondary">
+                                <?= t('sister_brands.inquire_now') ?>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="sister-brand-card">
+                        <h3><?= t('sister_brands.oceanus.title') ?></h3>
+                        <p><?= t('sister_brands.oceanus.description') ?></p>
+                        <div class="sister-brand-actions">
+                            <a href="https://theoceanus.live/" target="_blank" rel="noopener" class="cta-button sister-brand-btn">
+                                <?= t('sister_brands.visit_website') ?>
+                            </a>
+                            <a href="?inquiry=<?= rawurlencode('Oceanus Marine Adventure') ?>#contact" class="cta-button sister-brand-btn sister-brand-btn-secondary">
+                                <?= t('sister_brands.inquire_now') ?>
+                            </a>
+                        </div>
+                    </article>
+                </div>
             </div>
         </section>
     </main>
@@ -516,15 +664,43 @@ require_once 'includes/language-config.php';
 
     <script src="gallery.js"></script>
     <script>
+        const inquiryLabelPrefix = <?= json_encode(t('contact.form.inquiry_context', 'Inquiring about')) ?>;
+
         // Load gallery preview on page load
         document.addEventListener('DOMContentLoaded', function() {
             loadGalleryPreview();
             initInteractiveMap();
+            prefillInquiryForm();
         });
+
+        function prefillInquiryForm() {
+            const subjectField = document.getElementById('contactSubject');
+            const inquiryContext = document.getElementById('inquiryContext');
+            const urlParams = new URLSearchParams(window.location.search);
+            const inquiry = urlParams.get('inquiry');
+
+            if (!subjectField || !inquiry) {
+                return;
+            }
+
+            const normalizedInquiry = inquiry.trim();
+            if (normalizedInquiry) {
+                subjectField.value = normalizedInquiry;
+                if (inquiryContext) {
+                    inquiryContext.textContent = `${inquiryLabelPrefix}: ${normalizedInquiry}`;
+                }
+                if (history.replaceState) {
+                    urlParams.delete('inquiry');
+                    const cleanQuery = urlParams.toString();
+                    const cleanUrl = cleanQuery ? `${window.location.pathname}?${cleanQuery}#contact` : `${window.location.pathname}#contact`;
+                    history.replaceState({}, document.title, cleanUrl);
+                }
+            }
+        }
 
         // Gallery preview loader
         function loadGalleryPreview() {
-            const galleryGrid = document.querySelector('.gallery-preview .gallery-grid');
+            const galleryGrid = document.querySelector('.gallery-grid.gallery-preview');
             if (!galleryGrid) return;
 
             const previewImages = [
@@ -533,10 +709,17 @@ require_once 'includes/language-config.php';
                 'images/carosoul/3car.webp',
                 'images/carosoul/4car.webp',
                 'images/carosoul/5car.webp',
-                'images/carosoul/6car.webp'
+                'images/carosoul/6car.webp',
+                'images/carosoul/7car.webp',
+                'images/carosoul/8car.webp'
             ];
 
+            galleryGrid.innerHTML = '';
+
             previewImages.forEach((src, index) => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+
                 const img = document.createElement('img');
                 img.src = src;
                 img.alt = `Angola Gallery ${index + 1}`;
@@ -544,251 +727,87 @@ require_once 'includes/language-config.php';
                 img.addEventListener('click', () => {
                     window.location.href = 'gallery.php';
                 });
-                galleryGrid.appendChild(img);
+
+                item.appendChild(img);
+                galleryGrid.appendChild(item);
             });
         }
 
         // Interactive map initialization
         function initInteractiveMap() {
-            const mapContainer = document.getElementById('angola-map-object');
+            const mapObject = document.getElementById('angola-map-object');
             const loadMapBtn = document.querySelector('.load-map-btn');
-            
-            if (loadMapBtn) {
-                loadMapBtn.addEventListener('click', loadAngolaMap);
-            }
-        }
-
-        function loadAngolaMap() {
-            console.log('Loading Angola map...');
-            
             const placeholder = document.getElementById('map-placeholder');
-            const loadMapBtn = document.querySelector('.load-map-btn');
-            const mapContainer = document.getElementById('angola-map-object');
             const progressContainer = document.getElementById('map-progress');
             const progressFill = document.querySelector('.progress-fill');
             const progressText = document.querySelector('.progress-text');
             const mapStatusText = document.getElementById('map-status-text');
-            
-            if (loadMapBtn) {
-                loadMapBtn.textContent = <?= json_encode(t("map.loading")) ?>;
-                loadMapBtn.disabled = true;
+
+            if (!mapObject || !loadMapBtn || !placeholder || !progressContainer || !progressFill || !progressText) {
+                return;
             }
 
-            // Show progress indicator
-            if (progressContainer) {
-                progressContainer.style.display = 'block';
-            }
-            
-            if (mapStatusText) {
-                mapStatusText.textContent = <?= json_encode(t("map.loading_text")) ?>;
-            }
-            
-            if (placeholder) {
-                placeholder.style.opacity = '0.8';
-                placeholder.style.pointerEvents = 'none';
+            let listenersAttached = false;
+            const DURATION_MS = 1500;
+
+            function attachObjectInteractions() {
+                if (listenersAttached) {
+                    return;
+                }
+
+                const svgDoc = typeof mapObject.getSVGDocument === 'function'
+                    ? mapObject.getSVGDocument()
+                    : mapObject.contentDocument;
+
+                if (!svgDoc || !svgDoc.documentElement) {
+                    return;
+                }
+
+                attachListeners(svgDoc.documentElement);
+                listenersAttached = true;
             }
 
-            // Start progress animation
-            let progress = 0;
-            const progressInterval = setInterval(() => {
-                progress += Math.random() * 15 + 5; // Random progress increments
-                if (progress > 90) progress = 90; // Cap at 90% until actual loading completes
-                
-                if (progressFill) progressFill.style.width = progress + '%';
-                if (progressText) progressText.textContent = Math.round(progress) + '%';
-            }, 200);
-            
-            // Set the SVG data source
-            if (mapContainer) {
-                mapContainer.data = 'images/AngolaMap.svg';
-            }
-            
-            // Wait a moment for the browser to process the data attribute
-            setTimeout(() => {
-                // Multiple fallback methods to initialize
-                let initialized = false;
-                let attempts = 0;
-                
-                function tryInitialize() {
-                    attempts++;
-                    console.log(`Initialization attempt ${attempts}`);
-                    
-                    try {
-                        console.log('Checking mapContainer.contentDocument:', !!mapContainer.contentDocument);
-                        console.log('Checking mapContainer.data:', mapContainer.data);
-                        
-                        // Method 1: Try contentDocument
-                        if (mapContainer.contentDocument && mapContainer.contentDocument.documentElement) {
-                            const svgRoot = mapContainer.contentDocument.documentElement;
-                            console.log('SVG root found, tagName:', svgRoot.tagName);
-                            
-                            if (svgRoot.tagName && svgRoot.tagName.toLowerCase() === 'svg') {
-                                console.log('SUCCESS: SVG loaded via contentDocument');
-                                
-                                // Complete progress
-                                clearInterval(progressInterval);
-                                if (progressFill) progressFill.style.width = '100%';
-                                if (progressText) progressText.textContent = '100%';
-                                
-                                setTimeout(() => {
-                                    if (placeholder) placeholder.style.display = 'none';
-                                    if (mapContainer) mapContainer.style.display = 'block';
-                                    attachListeners(svgRoot);
-                                    console.log('Map initialization complete!');
-                                }, 500);
-                                
-                                initialized = true;
-                                return true;
-                            } else {
-                                console.log('Root element is not SVG, tagName:', svgRoot.tagName);
-                            }
-                        } else {
-                            console.log('contentDocument not available yet');
-                        }
-                        
-                        // Method 2: Try getSVGDocument (for some browsers)
-                        if (typeof mapContainer.getSVGDocument === 'function') {
-                            const svgDoc = mapContainer.getSVGDocument();
-                            if (svgDoc && svgDoc.documentElement) {
-                                console.log('SUCCESS: SVG loaded via getSVGDocument');
-                                
-                                // Complete progress
-                                clearInterval(progressInterval);
-                                if (progressFill) progressFill.style.width = '100%';
-                                if (progressText) progressText.textContent = '100%';
-                                
-                                setTimeout(() => {
-                                    if (placeholder) placeholder.style.display = 'none';
-                                    if (mapContainer) mapContainer.style.display = 'block';
-                                    attachListeners(svgDoc.documentElement);
-                                }, 500);
-                                
-                                initialized = true;
-                                return true;
-                            }
-                        }
-                    } catch (error) {
-                        console.log('Error during initialization attempt:', error.message);
-                    }
-                    
-                    return false;
-                }
-                
-                // Try immediate initialization
-                if (tryInitialize()) return;
-                
-                // Set up load event listener
-                if (mapContainer) {
-                    mapContainer.addEventListener('load', function() {
-                        console.log('Object load event fired');
-                        if (!initialized) {
-                            setTimeout(() => {
-                                if (tryInitialize()) return;
-                            }, 100);
-                        }
-                    });
-                }
-                
-                // Polling fallback with more attempts
-                const pollInterval = setInterval(() => {
-                    if (initialized || tryInitialize()) {
-                        clearInterval(pollInterval);
+            mapObject.addEventListener('load', attachObjectInteractions);
+
+            function animateProgress(onDone) {
+                const start = performance.now();
+
+                function tick(now) {
+                    const elapsed = now - start;
+                    const progress = Math.min(100, (elapsed / DURATION_MS) * 100);
+
+                    progressFill.style.width = progress.toFixed(2) + '%';
+                    progressText.textContent = Math.round(progress) + '%';
+
+                    if (progress < 100) {
+                        requestAnimationFrame(tick);
                         return;
                     }
-                    
-                    if (attempts > 50) { // 25 seconds total - more lenient
-                        console.log('TIMEOUT: Failed to initialize SVG after 50 attempts');
-                        clearInterval(pollInterval);
-                        clearInterval(progressInterval);
-                        
-                        // Try fallback: load SVG inline using fetch
-                        console.log('Trying fallback: loading SVG inline');
-                        loadMapInline();
-                        if (placeholder) {
-                            placeholder.style.opacity = '1';
-                            placeholder.style.pointerEvents = 'auto';
-                        }
-                    }
-                }, 500);
-                
-            }, 100);
-        }
 
-        // Fallback: Load SVG inline using fetch
-        function loadMapInline() {
-            console.log('Loading SVG inline as fallback...');
-            const mapContainer = document.getElementById('angola-map-object');
-            const placeholder = document.getElementById('map-placeholder');
-            const loadMapBtn = document.querySelector('.load-map-btn');
-            const mapStatusText = document.getElementById('map-status-text');
-            const progressFill = document.querySelector('.progress-fill');
-            const progressText = document.querySelector('.progress-text');
-            const progressContainer = document.getElementById('map-progress');
-            
-            if (mapStatusText) {
-                mapStatusText.textContent = 'Loading map (fallback method)...';
+                    onDone();
+                }
+
+                requestAnimationFrame(tick);
             }
-            
-            fetch('images/AngolaMap.svg')
-                .then(response => {
-                    console.log('Fetch response status:', response.status);
-                    if (!response.ok) {
-                        throw new Error('Failed to load SVG: ' + response.status);
-                    }
-                    return response.text();
-                })
-                .then(svgContent => {
-                    console.log('SVG content loaded via fetch');
-                    
-                    // Complete progress
-                    if (progressFill) progressFill.style.width = '100%';
-                    if (progressText) progressText.textContent = '100%';
-                    
-                    setTimeout(() => {
-                        // Create a container for the inline SVG
-                        const svgContainer = document.createElement('div');
-                        svgContainer.innerHTML = svgContent;
-                        svgContainer.style.width = '100%';
-                        svgContainer.style.height = '100%';
-                        
-                        const svgElement = svgContainer.querySelector('svg');
-                        if (svgElement) {
-                            svgElement.id = 'angola-map';
-                            svgElement.style.width = '100%';
-                            svgElement.style.height = '100%';
-                            
-                            // Hide object and placeholder, show inline SVG
-                            if (mapContainer) mapContainer.style.display = 'none';
-                            if (placeholder) placeholder.style.display = 'none';
-                            
-                            // Insert SVG after the object element
-                            if (mapContainer) {
-                                mapContainer.parentNode.insertBefore(svgContainer, mapContainer.nextSibling);
-                            }
-                            
-                            // Initialize interactivity
-                            attachListeners(svgElement);
-                            console.log('Inline SVG fallback successful');
-                        } else {
-                            throw new Error('No SVG element found in fetched content');
-                        }
-                    }, 500);
-                })
-                .catch(error => {
-                    console.log('Fallback failed:', error.message);
-                    
-                    // Reset progress and show retry button
-                    if (progressContainer) progressContainer.style.display = 'none';
-                    if (mapStatusText) mapStatusText.textContent = <?= json_encode(t("map.error")) ?>;
-                    if (loadMapBtn) {
-                        loadMapBtn.textContent = <?= json_encode(t("map.retry")) ?>;
-                        loadMapBtn.disabled = false;
-                    }
-                    if (placeholder) {
-                        placeholder.style.opacity = '1';
-                        placeholder.style.pointerEvents = 'auto';
-                    }
+
+            loadMapBtn.addEventListener('click', function() {
+                loadMapBtn.disabled = true;
+                loadMapBtn.textContent = 'Loading...';
+                progressContainer.style.display = 'block';
+                progressContainer.setAttribute('aria-hidden', 'false');
+                progressFill.style.width = '0%';
+                progressText.textContent = '0%';
+
+                if (mapStatusText) {
+                    mapStatusText.textContent = <?= json_encode(t('map.loading_text', 'Loading interactive map...')) ?>;
+                }
+
+                animateProgress(function() {
+                    placeholder.style.display = 'none';
+                    mapObject.style.display = 'block';
+                    attachObjectInteractions();
                 });
+            }, { once: true });
         }
 
         // Province data - using same structure as working HTML version
